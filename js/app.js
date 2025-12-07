@@ -70,7 +70,8 @@ async function initHomePage() {
 
     // COPY SEND LINK
     copyBtn.addEventListener("click", () => {
-        const link = `${window.location.origin}/send.html?to=${userId}`;
+        const timestamp = Date.now(); // milisaniye cinsinden mevcut zamanı alır
+        const link = `${window.location.origin}/send.html?to=${userId}&v=${timestamp}`;
         navigator.clipboard.writeText(link);
         showPopupMessage("Kavanoz linkin kopyalandı! Linki arkadaşlarınla paylaşıp yılbaşı mesajları toplayabilirsin 🎉");
     });
