@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mesaj Gönder</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+
+<body class="bg-gradient-to-b from-black via-slate-900 to-black min-h-screen px-4 py-6 sm:px-6 sm:py-8
+flex justify-start sm:justify-center items-stretch sm:items-center font-sans antialiased text-slate-100
+bg-[radial-gradient(circle_at_20%_10%,rgba(56,189,248,0.12),transparent_40%),radial-gradient(circle_at_80%_20%,rgba(52,211,153,0.12),transparent_40%),radial-gradient(circle_at_50%_90%,rgba(167,139,250,0.12),transparent_50%)]">
+
+    <div class="relative w-full max-w-lg mx-auto p-5 sm:p-8 rounded-2xl shadow-2xl
+    bg-white/5 backdrop-blur-md border border-white/10
+    bg-[radial-gradient(circle_at_30%_0%,rgba(34,211,238,0.18),transparent_45%),radial-gradient(circle_at_80%_100%,rgba(16,185,129,0.14),transparent_50%)]">
+
+        <h1 class="text-2xl sm:text-4xl font-extrabold text-center mb-6 sm:mb-8 tracking-wide
+        bg-clip-text text-transparent bg-gradient-to-r from-cyan-300 via-emerald-300 to-purple-300 drop-shadow">
+            🎄 Yılbaşı Kavanozu
+        </h1>
+
+        <div id="receiver-box" class="mb-6 hidden p-4 rounded-xl shadow-inner border border-white/20
+        bg-white/5 backdrop-blur-md">
+            <p class="text-lg sm:text-xl text-slate-300 font-semibold">Mesajın ulaşacağı kişi:</p>
+            <p class="font-extrabold text-2xl sm:text-3xl text-cyan-300 mt-2" id="receiver-name"></p>
+        </div>
+
+        <div id="error-box" class="hidden text-red-400 font-medium mb-4 p-3 rounded-xl border border-red-600
+        bg-red-900/20 backdrop-blur-sm"></div>
+
+        <form id="send-form" class="space-y-5 hidden">
+
+            <input type="text" id="sender-name" placeholder="Adınız (Kavanozun sahibi sizi tanısın 😎)" required
+                class="w-full px-5 py-3 bg-white/10 border border-white/20 rounded-xl text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-cyan-300 focus:border-transparent transition duration-200" />
+
+            <textarea id="message-content" placeholder="Mesajınız (Sevgisini belirtenlerden ekstra ücret talep edilmemektedir 🥀)" required rows="5"
+                class="w-full px-5 py-3 bg-white/10 border border-white/20 rounded-xl text-slate-100 placeholder-slate-400 focus:ring-2 focus:ring-emerald-300 focus:border-transparent transition duration-200"></textarea>
+
+            <button type="submit"
+                class="w-full py-3 rounded-xl font-bold text-base sm:text-lg text-black
+                bg-gradient-to-r from-cyan-300 via-emerald-300 to-purple-300
+                shadow-lg shadow-cyan-500/30 hover:brightness-110 transition">
+                Mesajı Gönder 🎁
+            </button>
+        </form>
+
+        <div id="success-box"
+            class="hidden text-emerald-300 font-bold text-xl mt-6 p-4 rounded-xl shadow-inner border border-white/20
+            bg-white/10 backdrop-blur-md text-center space-y-4">
+            <p>✅ Mesajın kavanoza düştü! 🎉</p>
+            <a href="/"
+            class="inline-block mt-2 px-4 py-2 bg-gradient-to-r from-cyan-300 via-emerald-300 to-purple-300 text-black font-semibold rounded-xl shadow-lg shadow-cyan-500/30 hover:brightness-110 transition">
+                Kendi Kavanozunu Oluştur 🫙
+            </a>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+    <script src="js/app.js" defer></script>
+</body>
+
+</html>
