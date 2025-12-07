@@ -84,7 +84,9 @@ async function initHomePage() {
 
 
     messageCountEl.textContent = messages.length;
-
+    
+    // Buraya kadar geldiysen söyleyeyim. Çok heyecanlı bir vatandaşsan yazdığım kodu inceleyebilirsin, değiştirebilirsin ve hatta başarabilirsen yılbaşı olmadan mesajları açabilirsin. 
+    // Başkasının mesajlarını okumayı engelledim, onu deneme bile.
     const unlocked =
         new Date() >= new Date("2026-01-01T00:00:00");
 
