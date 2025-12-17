@@ -3,14 +3,14 @@
 const SUPABASE_URL = "https://mxzvutawnrnswxdlwzjo.supabase.co";
 const SUPABASE_KEY = "sb_publishable_EPOu_YCdKfRNrgcKnqFeHA_9jRQFLYg";
 
-const supabase = window.supabase.createClient(
+const supabaseClient = window.supabase.createClient(
     SUPABASE_URL,
     SUPABASE_KEY
 );
 
 // GLOBAL session helper
 async function getSession() {
-    const { data } = await supabase.auth.getSession();
+    const { data } = await supabaseClient.auth.getSession();
     return data.session;
 }
 
@@ -59,7 +59,7 @@ async function initHomePage() {
     const userId = session.user.id;
 
     // GET PROFILE
-    const { data: profile } = await supabase
+    const { data: profile } = await supabaseClient
         .from("profiles")
         .select("display_name")
         .eq("id", userId)
@@ -77,7 +77,7 @@ async function initHomePage() {
     });
 
     // GET MESSAGES
-    const { data: messages } = await supabase
+    const { data: messages } = await supabaseClient
         .from("messages")
         .select("id, sender_name, created_at")
         .eq("receiver_id", userId)
@@ -108,7 +108,7 @@ async function initHomePage() {
                 return;
             }
 
-            const { data: fullMessage } = await supabase
+            const { data: fullMessage } = await supabaseClient
                 .from("messages")
                 .select("content")
                 .eq("id", msg.id)
@@ -131,7 +131,7 @@ async function initHomePage() {
     const logoutBtn = document.getElementById("logout-btn");
 
     logoutBtn.addEventListener("click", async () => {
-        const { error } = await supabase.auth.signOut();
+        const { error } = await supabaseClient.auth.signOut();
 
         if (error) {
             showPopupMessage("Çıkış yapılamadı 😤");
@@ -184,7 +184,7 @@ async function initSendPage() {
     }
 
     // Fetch receiver profile
-    const { data: profile, error } = await supabase
+    const { data: profile, error } = await supabaseClient
         .from("profiles")
         .select("display_name")
         .eq("id", receiverId)
@@ -212,7 +212,7 @@ async function initSendPage() {
             return;
         }
 
-        const { error: insertError } = await supabase.from("messages").insert([
+        const { error: insertError } = await supabaseClient.from("messages").insert([
             {
                 receiver_id: receiverId,
                 sender_name: senderName,
@@ -261,7 +261,7 @@ function initAuthPage() {
             const email = loginForm.email.value;
             const password = loginForm.password.value;
 
-            const { error } = await supabase.auth.signInWithPassword({
+            const { error } = await supabaseClient.auth.signInWithPassword({
                 email,
                 password,
             });
@@ -285,7 +285,7 @@ function initAuthPage() {
             const password = registerForm.password.value;
             const display_name = registerForm.display_name.value;
 
-            const { data, error } = await supabase.auth.signUp({
+            const { data, error } = await supabaseClient.auth.signUp({
                 email,
                 password,
             });
@@ -298,7 +298,7 @@ function initAuthPage() {
             const user = data.user;
 
             if (user) {
-                const { error: profileError } = await supabase
+                const { error: profileError } = await supabaseClient
                     .from("profiles")
                     .insert([{ id: user.id, display_name }]);
 
